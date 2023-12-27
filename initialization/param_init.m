@@ -32,6 +32,8 @@ params.T = 20;
 run('formation_v_shape.m')
 run('initial_state_3d.m')
 
+initial.pos = kron(eye(params.N), [eye(3) zeros(3)]) * initial.state;
+
 % ====================================================================
 % Communication topology among agents
 % ====================================================================

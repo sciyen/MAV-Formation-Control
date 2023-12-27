@@ -1,10 +1,11 @@
 close all;
-open_system('OpenLoopNashFormation');
-
+% open_system('OpenLoopNashFormation');
+open_system('DistributedEstimationFormation');
 
 run('param_init.m')
 run('strategy_dfc_opnash.m')
-sim_model = 'OpenLoopNashFormation';
+% sim_model = 'OpenLoopNashFormation';
+sim_model = 'DistributedEstimationFormation';
 simIn = Simulink.SimulationInput(sim_model);
 out = sim(simIn);
 

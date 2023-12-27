@@ -10,7 +10,7 @@ dfc_opnash.R = eye(params.p);
 dfc_opnash.r = eye(params.N);
 
 % Formation error weight, pxp
-dfc_opnash.Ff = eye(params.m);
+dfc_opnash.Ff = eye(params.m) * 2;
 
 % Output regulation weight, pxp
 dfc_opnash.Fo = eye(params.m);
@@ -42,3 +42,5 @@ for i = 1:params.N
     end
     dfc_opnash.mu((i-1)*params.m+1 : i*params.m) = mu_ij;
 end
+
+dfc_opnash.gi = 10;
