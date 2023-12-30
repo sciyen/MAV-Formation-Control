@@ -50,10 +50,10 @@ for i=1:params.N
             continue;
         end
         % is neighbor
-        if abs(i - j) <= 2
+        if abs(i - j) <= 3
             pos_err_norm = norm(initial.state(get_pos_idx(i, params)) - initial.state(get_pos_idx(j, params)));
-            % graph.adjacency(i, j) = exp((formation.R^2 - pos_err_norm^2) / (2 * formation.R^2 / (2 * log(2))));
-            graph.adjacency(i, j) = 1;
+            graph.adjacency(i, j) = exp((formation.R^2 - pos_err_norm^2) / (2 * formation.R^2 / (2 * log(2)))) - 1;
+            % graph.adjacency(i, j) = 1;
         end
     end
 end
@@ -61,9 +61,6 @@ end
 % [0 0 0;
 %  1 0 0;
 %  1 0 0];
- % [0 1 1;
- %  0 0 1;
- %  0 1 0];
 
 graph.degree = zeros(params.N);
 for i=1:params.N

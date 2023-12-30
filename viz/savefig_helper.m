@@ -1,4 +1,7 @@
 function savefig_helper(options, name)
+    set(gcf, 'Renderer', 'painters')
+    % set(gca, 'DataAspectRatio', [1 1 1])
+
     if options('savefig')
         fname = strcat(options('foldername'), options('filename'), name);
         saveas(gcf, strcat(fname, '.fig'));

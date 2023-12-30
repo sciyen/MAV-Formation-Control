@@ -2,6 +2,10 @@ function plot_cost_profile(ts, u, pos, params, formation, graph, dfc_opnash, opt
     figure
     colors = options('colors');
     [formation_err, output_regulation, energy_efforts] = calc_total_cost(ts, u, pos, params, formation, graph, dfc_opnash);
+
+    printf_final_error_and_cost(formation_err, output_regulation, energy_efforts);
+
+
     subplot(4,1,1)
     % plot(ts, formation_err, 'LineWidth',2); 
     for i = 1:params.N
@@ -30,3 +34,28 @@ function plot_cost_profile(ts, u, pos, params, formation, graph, dfc_opnash, opt
     xlabel('$t$ (sec)', 'FontSize', 14, 'Interpreter','latex')
     savefig_helper(options, '_costs')
 end 
+
+function printf_final_error_and_cost(formation_err, output_regulation, energy_efforts)
+    fprintf('Total formation error: %8.3f\n', sum(formation_err(end, :)))
+    fprintf('Final formation error: \n')
+    for i = 1:size(formation_err, 2)
+        fprintf('%8.3f ', formation_err(end, i))
+    end
+    fprintf('\n')
+
+    fprintf('Total output regulation error: %8.3f\n', sum(output_regulation(end, :)))
+    fprintf('Final output regulation error: \n')
+    for i = 1:size(formation_err, 2)
+        fprintf('%8.3f ', output_regulation(end, i))
+    end
+    fprintf('\n')
+
+    fprintf('Total energy effort: %8.3f\n', sum(energy_efforts(end, :)))
+    fprintf('Final energy effort: \n')
+    for i = 1:size(formation_err, 2)
+        fprintf('%8.3f ', energy_efforts(end, i))
+    end
+    fprintf('\n')
+
+    fprintf('Total cost: %8.3f\n', sum(formation_err(end, :)) + sum(output_regulation(end, :)) + sum(energy_efforts(end, :)))
+end

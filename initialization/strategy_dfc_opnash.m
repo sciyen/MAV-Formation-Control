@@ -7,7 +7,7 @@ dfc_opnash = struct();
 dfc_opnash.R = eye(params.p);
 
 % Team energy effort weight
-dfc_opnash.r = eye(params.N);
+dfc_opnash.r = eye(params.N) * 1.2;
 
 % Formation error weight, pxp
 dfc_opnash.Ff = eye(params.m) * 2;
